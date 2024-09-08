@@ -7,6 +7,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { ChevronDown, ChevronRight, Heart, PieChart, BarChart, ArrowRight, Building, Users, CheckCircle, Facebook, Twitter, Instagram, Linkedin } from "lucide-react"
+import { WalletSelector } from '@/components/WalletSelector';
 
 const campaigns = [
   {
@@ -167,9 +168,7 @@ const HomePage: React.FC = () => {
               <Button variant="ghost" className="text-white hover:text-gray-900 hover:bg-white font-medium transition-colors">
                 Beneficiary Login
               </Button>
-              <Button variant="secondary" className="rounded-full bg-white text-gray-900 hover:bg-gray-100 text-sm px-4 py-2 font-medium">
-                Connect Wallet
-              </Button>
+              <WalletSelector />
             </div>
           </nav>
         </header>
