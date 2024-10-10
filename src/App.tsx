@@ -25,7 +25,7 @@ export default function App() {
                 <Routes>
                     <Route path="/" element={<Layout/>}>
                         <Route path="/" element={<HomePage/>}/>
-                        <Route path="campaign" element={<CampaignDetailPage/>}/>
+                        <Route path="campaign/:id" element={<CampaignDetailPage/>}/>
                     </Route>
                 </Routes>
             </BrowserRouter>

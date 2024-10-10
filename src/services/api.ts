@@ -8,17 +8,23 @@ interface Organization {
     impact: string;
     address: string;
     verified: number;
-    created_at: string;
-    updated_at: string;
-    deleted_at: string | null;
 }
 
-interface Campaign {
+interface Beneficiary {
+    id: string;
+    name: string;
+    logo: string;
+    percentage: number;
+}
+
+interface CampaignDetail {
     id: string;
     title: string;
     description: string;
     image: string;
+    fund_allocation_description: string;
     organization: Organization;
+    beneficiaries: Beneficiary[];
     donation_amount: number;
     donation_count: number;
     created_at: string;
@@ -26,7 +32,7 @@ interface Campaign {
 
 interface ApiResponse<T> {
     message: string | null;
-    data: T[];
+    data: T;
 }
 
 const api = axios.create({
@@ -35,7 +41,7 @@ const api = axios.create({
 
 export const getVerifiedBeneficiaries = async (): Promise<Organization[]> => {
     try {
-        const response = await api.get<ApiResponse<Organization>>('/organizations');
+        const response = await api.get<ApiResponse<Organization[]>>('/organizations');
         return response.data.data.filter(org => org.verified === 1);
     } catch (error) {
         console.error('Error fetching verified beneficiaries:', error);
@@ -43,12 +49,22 @@ export const getVerifiedBeneficiaries = async (): Promise<Organization[]> => {
     }
 };
 
-export const getCampaigns = async (): Promise<Campaign[]> => {
+export const getCampaigns = async (): Promise<CampaignDetail[]> => {
     try {
-        const response = await api.get<ApiResponse<Campaign>>('/campaigns');
+        const response = await api.get<ApiResponse<CampaignDetail[]>>('/campaigns');
         return response.data.data;
     } catch (error) {
         console.error('Error fetching campaigns:', error);
+        throw error;
+    }
+};
+
+export const getCampaignDetail = async (id: string): Promise<CampaignDetail> => {
+    try {
+        const response = await api.get<ApiResponse<CampaignDetail>>(`/campaigns/${id}`);
+        return response.data.data;
+    } catch (error) {
+        console.error('Error fetching campaign detail:', error);
         throw error;
     }
 };

@@ -14,6 +14,7 @@ import {
     Wallet
 } from "lucide-react"
 import {getCampaigns, getVerifiedBeneficiaries} from '@/services/api'
+import {useNavigate} from "react-router-dom";
 
 interface Organization {
     id: string;
@@ -103,6 +104,8 @@ const HomePage: React.FC = () => {
     const [isLoadingCampaigns, setIsLoadingCampaigns] = useState(true);
     const [errorBeneficiaries, setErrorBeneficiaries] = useState<string | null>(null);
     const [errorCampaigns, setErrorCampaigns] = useState<string | null>(null);
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchData = async () => {
@@ -314,8 +317,8 @@ const HomePage: React.FC = () => {
                                             {campaign.donation_count} donors
                                         </div>
                                     </div>
-                                    <Button
-                                        className="rounded-full px-6 py-2 bg-[#FAFAFA] text-gray-900 border border-gray-300 hover:bg-gray-100">
+                                    <Button onClick={() => navigate(`/campaign/${campaign.id}`)}
+                                            className="rounded-full px-6 py-2 bg-[#FAFAFA] text-gray-900 border border-gray-300 hover:bg-gray-100">
                                         Help <ArrowRight className="ml-2 w-4 h-4"/>
                                     </Button>
                                 </div>

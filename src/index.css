@@ -70,3 +70,13 @@
     font-family: Inter, system-ui, sans-serif;
   }
 }
+
+/* Add this CSS to your global styles or within a style tag in your component */
+.tabs-list [data-state='active'] {
+  background-color: #f3f4f6;
+  color: #111827;
+}
+
+.tabs-list [data-state='inactive']:hover {
+  background-color: #f9fafb;
+}
