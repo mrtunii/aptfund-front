@@ -14,6 +14,7 @@ interface Beneficiary {
     id: string;
     name: string;
     logo: string;
+    address: string;
     percentage: number;
 }
 

@@ -373,7 +373,6 @@ const HomePage: React.FC = () => {
                                              className="w-16 h-16 rounded-full mr-4 object-cover"/>
                                         <div>
                                             <h3 className="text-xl font-medium">{beneficiary.name}</h3>
-                                            <p className="text-sm text-gray-500">{beneficiary.address}</p>
                                         </div>
                                     </div>
                                     <p className="text-gray-600 mb-4">{beneficiary.description}</p>
